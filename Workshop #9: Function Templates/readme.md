@@ -1,59 +1,65 @@
-Workshop #9: Function Templates
-
+# Workshop #9: Function Templates
 Version 1.0
 
 In this workshop, you are to code two function templates:
+- to search through a compound type array and insert the matches found in the array, into a Collection of the same compound type.
+- to list elements of an array with a title
 
-    to search through a compound type array and insert the matches found in the array, into a Collection of the same compound type.
-    to list elements of an array with a title
-
-Learning Outcomes
+## Learning Outcomes
 
 Upon successful completion of this workshop, you will have demonstrated the abilities to:
 
-    code function templates
-    implement calls to function templates
-    describe what you have learned in completing this workshop
+-	code function templates
+-	implement calls to function templates
+-	describe what you have learned in completing this workshop
 
-Submission Policy
+
+## Submission Policy
 
 The workshop is divided into one coding part and one non-coding part:
 
-    Lab (part 1): worth 100% of the workshop's total mark, is due on Thursday at 23:59:59 of the week of your scheduled lab.
-    reflection: non-coding part, is due on Sunday at 23:59:59 of the week of your scheduled lab. The reflection doesn't have marks associated with it but can incur a penalty of max 40% of the whole workshop's mark if your professor deems it insufficient (you make your marks from the code, but you can lose some on the reflection).
+- *Lab* (part 1): worth 100% of the workshop's total mark, is due on **Thursday at 23:59:59** of the week of your scheduled lab.
+- *reflection*: non-coding part, is due on **Sunday at 23:59:59** of the week of your scheduled lab. The reflection doesn't have marks associated with it but can incur a **penalty of max 40% of the whole workshop's mark** if your professor deems it insufficient (you make your marks from the code, but you can lose some on the reflection).
 
-The code that is submitted late receives 0%. On Sunday at midnight the submission closes; if the workshop is incomplete when the submission closes (missing at least one of the coding or non-coding parts), the mark for the entire workshop is 0%.
+**The code that is submitted late receives 0%.**  On Sunday at midnight the submission closes; if the workshop is incomplete when the submission closes (missing at least one of the coding or non-coding parts), **the mark for the entire workshop is 0%**.
 
-Every file that you submit must contain (as a comment) at the top your name, your Seneca email, Seneca Employee ID and the date when you completed the work.
+Every file that you submit must contain (as a comment) at the top **your name**, **your Seneca email**, **Seneca Employee ID** and the **date** when you completed the work.
 
 If the file contains only your work or work provided to you by your professor, add the following message as a comment at the top of the file:
 
-    I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+> I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
-If the file contains work that is not yours (you found it online or somebody provided it to you), write exactly which part of the assignment is given to you as help, who gave it to you, or which source you received it from. By doing this you will only lose the price for the parts you got help for, and the person helping you will be clear of any wrongdoing.
-Compiling and Testing Your Program
 
-All your code should be compiled using this command on matrix:
+If the file contains work that is not yours (you found it online or somebody provided it to you), **write exactly which part of the assignment is given to you as help, who gave it to you, or which source you received it from.**  By doing this you will only lose the price for the parts you got help for, and the person helping you will be clear of any wrongdoing.
 
+
+## Compiling and Testing Your Program
+
+All your code should be compiled using this command on `matrix`:
+
+```bash
 g++ -Wall -std=c++11 -g -o ws file1.cpp file2.cpp ...
+```
 
-    -Wall: compiler will report all warnings
-    -std=c++11: the code will be compiled using the C++11 standard
-    -g: the executable file will contain debugging symbols, allowing valgrind to create better reports
-    -o ws: the compiled application will be named ws
+- `-Wall`: compiler will report all warnings
+- `-std=c++11`: the code will be compiled using the C++11 standard
+- `-g`: the executable file will contain debugging symbols, allowing *valgrind* to create better reports
+- `-o ws`: the compiled application will be named `ws`
 
-After compiling and testing your code, run your program as following to check for possible memory leaks (assuming your executable name is ws):
+After compiling and testing your code, run your program as following to check for possible memory leaks (assuming your executable name is `ws`):
 
+```bash
 valgrind ws
+```
 
-To check the output, use a program that can compare text files. Search online for such a program for your platform, or use diff available on matrix.
+To check the output, use a program that can compare text files.  Search online for such a program for your platform, or use *diff* available on `matrix`.
 
-    Note: All the code written in workshops and the project must be implemented in the sdds namespace.
+> Note: All the code written in workshops and the project must be implemented in the **sdds** namespace.
 
-Lab (Part 1, 100%)
+# Lab (Part 1, 100%)
 
-Look at the code provided in the Collection template module, study it and understand it. The Collection class is a template that works like a dynamic array of objects and resizes itself as objects are added to it. The code snippet below demonstrates how Collection works:
-
+Look at the code provided in the **Collection** template module, study it and understand it. The Collection class is a template that works like a dynamic array of objects and resizes itself as objects are added to it. The code snippet below demonstrates how Collection works:  
+```C++
 Collection<double> Cdbl;
 Cdbl.add(1.23);
 Cdbl.add(2.34);
@@ -62,81 +68,79 @@ cout << "There are " << Cdbl.size() << " items in the Collection!" << endl;
 for(int i=0; i< Cdbl.size();i++){
     cout << Cdbl[i] << endl;
 }
-
+```
 Output:
-
+```Text
 There are 3 items in the Collection!
 1.23
 2.34
 3.45
+```
+## Supplied Modules:
+- Collection
+- ReadWrite 
+- Employee
+- Student
+- Car
 
-Supplied Modules:
+**Do not modify these modules!**  Look at the code and make sure you understand them.
 
-    Collection
-    ReadWrite
-    Employee
-    Student
-    Car
-
-Do not modify these modules! Look at the code and make sure you understand them.
-searchNlist module
-
+## searchNlist module
 Implement this module in 'searchNlist.h' header file.
-search function template
+### `search` function template
 
-Create a function template called search that accepts four arguments in any order you prefer:
+Create a function template called **search** that accepts four arguments in any order you prefer:
+- A reference to a Collection of templated objects (template type 1). The Collection is defined in **Collection.h** 
+- An array of templated objects; the same type as the Collection type. (template type 1)
+- Number of elements in the array of objects
+- A  **key** templated value to search for, in the array of objects. (template type 2)
 
-    A reference to a Collection of templated objects (template type 1). The Collection is defined in Collection.h
-    An array of templated objects; the same type as the Collection type. (template type 1)
-    Number of elements in the array of objects
-    A key templated value to search for, in the array of objects. (template type 2)
 
-The search function template returns a bool that is true only if at least one match to the key is found in the array of objects and false otherwise.
+The search function template returns a bool that is true only if at least one match to the key is found in the array of objects and false otherwise. 
 
-The search function goes through all the elements of the array of objects and adds all the matches found to the Collection. (use the "==" operator to check for a match between the objects and the key)
-listArrayElements
+The search function goes through all the elements of the array of objects and adds all the matches found to the Collection. (use the "==" operator to check for  a match between the objects and the key) 
 
-Lists all the elements of an array.
+### listArrayElements
+Lists all the elements of an array. 
 
-Create a function template called listArrayElements that accepts three arguments in any order you prefer:
+Create a function template called **listArrayElements** that accepts three arguments in any order you prefer:
+- A `const char*` for a Title to be printed as the Title of the list.
+- A constant array of templated objects (template type)
+- The number of the elements of the array.
 
-    A const char* for a Title to be printed as the Title of the list.
-    A constant array of templated objects (template type)
-    The number of the elements of the array.
-
-This function first prints the Title and then goes to newline.
+This function first prints the **Title** and then goes to newline.
 
 Then it will print the row number and then insert each element of the array into cout with a newline attached.
 
 For example, if this function is called for the following array of integers.
-
+```C++
 int a[]{10,20,30,40};
-
+```
 using the Title value of "INTEGERS" and the number of elements as 4, the output would be like the following.
-
+```text
 INTEGERS
 1: 10
 2: 20
 3: 30
 4: 40
+```
 
-Template type requirements
-
+### Template type requirements
 Have a comment section for both functions and explain what requirements each of types of your temaplates must have to be able to work with your logic.
 
 Then also copy these comments to the part 2 reflection of the workshop.
-The main module
 
-    In this workshop you are modifying the main module. Make sure to update the comments at the top to reflect your work on the module
+## The main module
+> In this workshop you are modifying the main module. Make sure to update the comments at the top to reflect your work on the module
 
-Modify the main module and call the search function as the condition of the four if statements in the source code.
+Modify the main module and call the **search** function as the condition of the four **if** statements in the source code.
+> See the comments in **main.cpp**
 
-    See the comments in main.cpp
+Also, call the **listArrayElement** function four times before the first three **if** statement and at the end of the main() function to list the elements of the integer array **a**.
+> See the comments in **main.cpp**
 
-Also, call the listArrayElement function four times before the first three if statement and at the end of the main() function to list the elements of the integer array a.
 
-    See the comments in main.cpp
-
+```C++
 // Workshop 9:
 // Version: 1.0
 // Date: 2021-02-26
@@ -241,9 +245,10 @@ int main() {
    listArrayElements(...........................);
    return 0;
 }
+```
+## output
 
-output
-
+```Text
 All the cars:
 1: GVFGHI Tesla Model S
 2: ABCDEF BMW 320
@@ -293,10 +298,10 @@ INTEGERS
 4: 40
 5: 50
 6: 60
-
-Submission
-Files to submit
-
+```
+## Submission
+### Files to submit
+```Text
 Collection.h
 Car.h
 Car.cpp
@@ -308,32 +313,36 @@ ReadWrite.h
 ReadWrite.cpp
 main.cpp
 serchNlist.h
+```
 
 To test and demonstrate the execution of your program use the same data as shown in the output example.
 
-Upload your source code and data file to your matrix account. Compile and run your code using the g++ compiler as shown above and make sure that everything works properly.
+Upload your source code and data file to your `matrix` account. Compile and run your code using the `g++` compiler as shown above and make sure that everything works properly.
 
 Then, run the following command from your account
-
-    replace profname.proflastname with your professor’s Seneca user-id
-    replace # with the workshop number
-    replace ?? with your subject code (200 or 244)
-
-    ~profname.proflastname/submit 2??/w#/p1
+- replace `profname.proflastname` with your professor’s Seneca user-id
+- replace **#** with the workshop number
+- replace **??** with your subject code (2**00** or 2**44**)
+```text
+~profname.proflastname/submit 2??/w#/p1
+```
 
 and follow the instructions.
-Part 2: Reflection
 
-Study your final solutions for each deliverable of the workshop and the most recent milestones of the project, reread the related parts of the course notes, and make sure that you have understood the concepts covered by this workshop. This should take no less than 30 minutes of your time and the result is suggested to be at least 150 words in length.
+# Part 2: Reflection
 
-Create a file named reflect.txt that contains your detailed description of the topics that you have learned in completing this workshop and the project milestones and mention any issues that caused you difficulty.
-Submission
+Study your final solutions for each deliverable of the workshop **and the most recent milestones of the project**, reread the related parts of the course notes, and make sure that you have understood the concepts covered by this workshop.  **This should take no less than 30 minutes of your time and the result is suggested to be at least 150 words in length.**
 
-Run the following command from your account (replace profname.proflastname with your professor’s Seneca userid):
+Create a file named `reflect.txt` that contains your detailed description of the topics that you have learned in completing this workshop and **the project milestones** and mention any issues that caused you difficulty.
 
+
+## Submission
+
+Run the following command from your account (replace `profname.proflastname` with your professor’s Seneca userid):
+```
 ~profname.proflastname/submit 2??/w9/p2
 replace ?? with your course code (44 or 00)
-
+```
 and follow the instructions.
 
-:warning:Important: Please note that a successful submission does not guarantee full credit for this workshop. If the professor is not satisfied with your implementation, your professor may ask you to resubmit. Resubmissions will attract a penalty.
+**:warning:Important:** Please note that a successful submission does not guarantee full credit for this workshop. If the professor is not satisfied with your implementation, your professor may ask you to resubmit. Resubmissions will attract a penalty.
